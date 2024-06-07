@@ -1,5 +1,6 @@
 import "./globals.css";
 import { ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = {
   title: "島根大学 軽音楽部",
@@ -23,7 +24,10 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <SpeedInsights />
+        {children}
+      </body>
     </html>
   );
 };
