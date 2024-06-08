@@ -7,6 +7,8 @@ import Footer from "@/app/components/Footer";
 export const metadata = {
   title: "島根大学 軽音楽部",
   description: "島根大学軽音楽部の紹介ページ",
+  name: "島根大学 軽音楽部",
+  content: " viewport-fit=cover",
 };
 
 const RootLayout = ({ children }: { children: ReactNode }) => {
@@ -28,7 +30,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
           className="flex flex-col min-h-screen bg-white"
           style={{
             paddingTop: "env(safe-area-inset-top)",
-            paddingBottom: "env(safe-area-inset-bottom)",
+            // paddingBottom: "env(safe-area-inset-bottom)",
           }}
         >
           <Header />
