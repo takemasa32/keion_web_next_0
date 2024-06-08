@@ -1,18 +1,23 @@
 import React from "react";
 import styles from "./page.module.css";
-import SNSButton from "./conponents/SNSButton";
-import FAQItem from "./conponents/FAQItems";
+import SNSButton from "./components/SNSButton";
+import FAQItem from "./components/FAQItems";
+import TopLoading from "./components/TopLoading";
+import ScrollReveal from "./components/ScrollReveal";
 
 const Home = () => {
   return (
     <>
+      <TopLoading />
       <div className="animation">
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
             <div className="mx-auto flex max-w-xl flex-col items-center text-center">
-              <p className="mb-4 font-semibold text-indigo-500 md:mb-6 md:text-lg xl:text-xl">
-                はじめまして！島根大学 軽音楽部です！
-              </p>
+              <ScrollReveal>
+                <p className="mb-4 font-semibold text-indigo-500 md:mb-6 md:text-lg xl:text-xl">
+                  はじめまして！島根大学 軽音楽部です！
+                </p>
+              </ScrollReveal>
               <h1 className="anm_mod full mb-8 text-3xl font-bold text-black sm:text-4xl md:mb-12 md:text-5xl">
                 共に音楽を
                 <br />
@@ -97,9 +102,7 @@ const Home = () => {
               </div>
               <div className="flex divide-x rounded-lg border bg-gray-50">
                 <div className="flex items-center p-2 text-indigo-500 md:p-4 ">
-                  <span className="material-symbols-outlined">
-                    discover_tune
-                  </span>
+                  <span className="material-symbols-outlined">discover_tune</span>
                 </div>
                 <div className="p-4 md:p-6">
                   <h3 className="mb-2  text-gray-800 text-lg font-semibold md:text-xl">
@@ -154,7 +157,9 @@ const Home = () => {
           </div>
           <div className="m-5">
             <h2>次は部室で会いましょう！</h2>
-            <SNSButton />
+            <ScrollReveal>
+              <SNSButton />
+            </ScrollReveal>
           </div>
         </div>
       </div>

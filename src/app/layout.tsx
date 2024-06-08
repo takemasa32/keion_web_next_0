@@ -1,6 +1,8 @@
 import "./globals.css";
 import { ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import Header from "@/app/components/Header";
+import Footer from "@/app/components/Footer";
 
 export const metadata = {
   title: "島根大学 軽音楽部",
@@ -25,8 +27,12 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         />
       </head>
       <body>
+         <div className="flex flex-col min-h-screen bg-white" >
+        <Header />
         <SpeedInsights />
         {children}
+          <Footer />
+          </div>
       </body>
     </html>
   );
