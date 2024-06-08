@@ -13,10 +13,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
   return (
     <html lang="ja">
       <head>
-        <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet"
-        />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
         <link
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
           rel="stylesheet"
@@ -27,12 +24,18 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         />
       </head>
       <body>
-         <div className="flex flex-col min-h-screen bg-white" >
-        <Header />
-        <SpeedInsights />
-        {children}
+        <div
+          className="flex flex-col min-h-screen bg-white"
+          style={{
+            paddingTop: "env(safe-area-inset-top)",
+            paddingBottom: "env(safe-area-inset-bottom)",
+          }}
+        >
+          <Header />
+          <SpeedInsights />
+          {children}
           <Footer />
-          </div>
+        </div>
       </body>
     </html>
   );
