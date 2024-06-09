@@ -1,19 +1,24 @@
 "use client";
 import Head from "next/head";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@tremor/react";
 import Image from "next/image";
 
 const AudioPlayerPage: React.FC = () => {
-  const audioRef1 = useRef(new Audio("/secret/audio/meow.mp3"));
-  const audioRef2 = useRef(new Audio("/secret/audio/dosu.mp3"));
-  const audioRef3 = useRef(new Audio("/secret/audio/burudo-za-.mp3"));
-  const audioRef4 = useRef(new Audio("/secret/audio/baikinman.mp3"));
+  const audioRef1 = useRef<HTMLAudioElement | null>(null);
+  const audioRef2 = useRef<HTMLAudioElement | null>(null);
+  const audioRef3 = useRef<HTMLAudioElement | null>(null);
+  const audioRef4 = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef1.current = new Audio("/secret/audio/meow.mp3");
+    audioRef2.current = new Audio("/secret/audio/dosu.mp3");
+    audioRef3.current = new Audio("/secret/audio/burudo-za-.mp3");
+    audioRef4.current = new Audio("/secret/audio/baikinman.mp3");
+  }, []);
 
   const playSound = (audioRef: React.RefObject<HTMLAudioElement>) => {
-    if (audioRef.current) {
-      audioRef.current.play();
-    }
+    audioRef.current?.play();
   };
 
   return (
