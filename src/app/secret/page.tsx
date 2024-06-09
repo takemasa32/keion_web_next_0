@@ -18,7 +18,27 @@ const AudioPlayerPage: React.FC = () => {
   }, []);
 
   const playSound = (audioRef: React.RefObject<HTMLAudioElement>) => {
-    audioRef.current?.play();
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+      audioRef.current.play();
+    }
+  };
+  const playAll = () => {
+    audioRef1.current?.play();
+    audioRef2.current?.play();
+    audioRef3.current?.play();
+    audioRef4.current?.play();
+  };
+
+  const pauseSound = (audioRef: React.RefObject<HTMLAudioElement>) => {
+    audioRef.current?.pause();
+  };
+  const pauseAll = () => {
+    audioRef1.current?.pause();
+    audioRef2.current?.pause();
+    audioRef3.current?.pause();
+    audioRef4.current?.pause();
   };
 
   return (
@@ -43,8 +63,11 @@ const AudioPlayerPage: React.FC = () => {
             バイキンマン
           </Button>
         </div>
+        <Button variant="secondary" onClick={pauseAll}>
+          再生一時停止
+        </Button>
       </div>
-      <div className="flex justify-center items-center ">
+      <div onClick={() => playAll()} className="flex justify-center items-center ">
         <Image
           src="/secret/photo/happyouBaikinman.jpg"
           alt="好きなブルドーザー発表バイキソマン"
