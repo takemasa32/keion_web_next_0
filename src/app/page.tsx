@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <>
       <div onClick={() => setSecretPass(secretPass + 1)}>
-        <TopLoading />
+        <TopLoading text="ようこそ軽音楽部へ" />
       </div>
       <div className="animation">
         <div className="bg-white py-6 sm:py-8 lg:py-12">

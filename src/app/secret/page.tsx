@@ -3,6 +3,7 @@ import Head from "next/head";
 import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@tremor/react";
 import Image from "next/image";
+import TopLoading from "../components/TopLoading";
 
 const AudioPlayerPage: React.FC = () => {
   const audioRef1 = useRef<HTMLAudioElement | null>(null);
@@ -43,6 +44,7 @@ const AudioPlayerPage: React.FC = () => {
 
   return (
     <div className="bg-white">
+      <TopLoading text="お楽しみコンテンツ" />
       <Head>
         <meta name="robots" content="noindex" />
       </Head>
@@ -63,6 +65,8 @@ const AudioPlayerPage: React.FC = () => {
             バイキンマン
           </Button>
         </div>
+      </div>
+      <div className="flex justify-center ">
         <Button variant="secondary" onClick={pauseAll}>
           再生一時停止
         </Button>
