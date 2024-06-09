@@ -14,8 +14,6 @@ const InfoBlock: React.FC<InfoBlockProps> = ({ icon, title, description }) => {
     </p>
   ));
 
-  console.log(formattedDescription);
-
   return (
     <div className="flex divide-x rounded-lg border bg-gray-50">
       <div className="flex items-center p-2 text-indigo-500 md:p-4 ">
