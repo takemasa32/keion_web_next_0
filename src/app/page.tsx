@@ -1,14 +1,22 @@
+"use client";
 import React from "react";
 import styles from "./page.module.css";
 import SNSButton from "./components/SNSButton";
 import FAQItem from "./components/FAQItems";
 import TopLoading from "./components/TopLoading";
 import ScrollReveal from "./components/ScrollReveal";
+import InfoBlock from "./components/InfoBlock";
+import { useRouter } from "next/navigation";
 
 const Home = () => {
+  const router = useRouter();
+  const [secretPass, setSecretPass] = React.useState(0);
+
   return (
     <>
-      <TopLoading />
+      <div onClick={() => setSecretPass(secretPass + 1)}>
+        <TopLoading />
+      </div>
       <div className="animation">
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
@@ -18,11 +26,17 @@ const Home = () => {
                   はじめまして！島根大学 軽音楽部です！
                 </p>
               </ScrollReveal>
-              <h1 className="anm_mod full mb-8 text-3xl font-bold text-black sm:text-4xl md:mb-12 md:text-5xl">
-                共に音楽を
-                <br />
-                楽しみましょう！
-              </h1>
+              <div
+                onClick={
+                  secretPass >= 10 ? () => router.push("/secret?id=secretService") : undefined
+                }
+              >
+                <h1 className="mb-8 text-3xl font-bold text-black sm:text-4xl md:mb-12 md:text-5xl">
+                  共に音楽を
+                  <br />
+                  楽しみましょう！
+                </h1>
+              </div>
               {/* <div className="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
                 <a
                   href="/posts"
@@ -53,74 +67,40 @@ const Home = () => {
               </p>
             </div>
             <div className="grid gap-4 sm:grid-cols-2 md:gap-8 xl:grid-cols-3">
-              <div className="anm_mod left delay flex divide-x rounded-lg border bg-gray-50">
-                <div className="flex items-center p-2 text-indigo-500 md:p-4 ">
-                  <span className="material-symbols-outlined h-6 w-6 md:h-8 md:w-8">
-                    pediatrics
-                  </span>
-                </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="mb-2 text-gray-800 text-lg font-semibold md:text-xl">
-                    初心者歓迎
-                  </h3>
-                  <p className="text-gray-500">
-                    実際部員の中でもほぼ半数が初心者です．
-                    <br />
-                    実際のバンド活動を通じて一緒に成長していきましょう！
-                  </p>
-                </div>
+              <div className="divide-x rounded-lg border bg-gray-50">
+                <InfoBlock
+                  icon="pediatrics"
+                  title="初心者歓迎"
+                  description="実際部員の中でもほぼ半数が初心者です．\n実際のバンド活動を通じて一緒に成長していきましょう！"
+                />
               </div>
-              <div className="flex divide-x rounded-lg border bg-gray-50">
-                <div className="flex items-center p-2 text-indigo-500 md:p-4 ">
-                  <span className="material-symbols-outlined">payments</span>
-                </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="mb-2 text-gray-800 text-lg font-semibold md:text-xl">
-                    設備が充実
-                  </h3>
-                  <p className="text-gray-500">
-                    大学内にアンプやドラムセットなど練習できる環境が揃っています．
-                    <br />
-                    わざわざ外部のスタジオを借りなくても練習が可能です！
-                  </p>
-                </div>
+              <div className="divide-x rounded-lg border bg-gray-50">
+                <InfoBlock
+                  icon="payments"
+                  title="設備が充実"
+                  description="大学内にアンプやドラムセットなど練習できる環境が揃っています．\nわざわざ外部のスタジオを借りなくても練習が可能です！"
+                />
               </div>
-              <div className=" flex divide-x rounded-lg border bg-gray-50">
-                <div className="flex items-center p-2 text-indigo-500 md:p-4 ">
-                  <span className="material-symbols-outlined">hub</span>
-                </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="mb-2  text-gray-800 text-lg font-semibold md:text-xl">
-                    部員が多い
-                  </h3>
-                  <p className="text-gray-500">
-                    ”実際に活動をしている”部員数がとても多い部活です．
-                    <br />
-                    各学部内外大学内で友達を作るならもってこいです！！
-                  </p>
-                </div>
+              <div className="divide-x rounded-lg border bg-gray-50">
+                <InfoBlock
+                  icon="hub"
+                  title="部員が多い"
+                  description="”実際に活動をしている”部員数がとても多い部活です．\n各学部内外大学内で友達を作るならもってこいです！！"
+                />
               </div>
-              <div className="flex divide-x rounded-lg border bg-gray-50">
-                <div className="flex items-center p-2 text-indigo-500 md:p-4 ">
-                  <span className="material-symbols-outlined">discover_tune</span>
-                </div>
-                <div className="p-4 md:p-6">
-                  <h3 className="mb-2  text-gray-800 text-lg font-semibold md:text-xl">
-                    様々なジャンル
-                  </h3>
-                  <p className="text-gray-500">
-                    部員数が多いため，様々なジャンルの音楽に触れることができます．
-                    <br />
-                    自分の知らないアーティストを見つける機会がたくさんあります．
-                  </p>
-                </div>
+              <div className="divide-x rounded-lg border bg-gray-50">
+                <InfoBlock
+                  icon="discover_tune"
+                  title="様々なジャンル"
+                  description="部員数が多いため，様々なジャンルの音楽に触れることができます．\n自分の知らないアーティストを見つける機会がたくさんあります．"
+                />
               </div>
             </div>
           </div>
         </div>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
           <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-            <div className="anm_mod left fast mb-10 md:mb-16">
+            <div className="left fast mb-10 md:mb-16">
               <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
                 よくある質問
               </h2>
