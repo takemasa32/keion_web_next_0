@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^2.0.4",
+    "@next/third-parties": "^15.0.0-canary.35",
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "^3.17.2",
     "@vercel/speed-insights": "^1.0.11",
