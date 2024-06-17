@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/app/(root)/components/Header";
 import Footer from "@/app/(root)/components/Footer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata = {
   title: "島根大学 軽音楽部",
@@ -26,6 +27,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
         />
         {/* ICON */}
         <link rel="icon" href="./../favicon.ico" />
+        <GoogleAnalytics gaId={process.env.GA_ID ?? ""} />
       </head>
       <body>
         <div
