@@ -13,7 +13,6 @@ const AudioPlayerPage: React.FC = () => {
   const audioRef4 = useRef<HTMLAudioElement | null>(null);
   const audioRef5 = useRef<HTMLAudioElement | null>(null);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   // const key = "secretService";
   // const [isDisplay, setIsDisplay] = useState(false);
