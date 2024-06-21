@@ -4,18 +4,36 @@ import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@tremor/react";
 import Image from "next/image";
 import TopLoading from "../(root)/components/TopLoading";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const AudioPlayerPage: React.FC = () => {
   const audioRef1 = useRef<HTMLAudioElement | null>(null);
   const audioRef2 = useRef<HTMLAudioElement | null>(null);
   const audioRef3 = useRef<HTMLAudioElement | null>(null);
   const audioRef4 = useRef<HTMLAudioElement | null>(null);
+  const audioRef5 = useRef<HTMLAudioElement | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
 
+  // const key = "secretService";
+  // const [isDisplay, setIsDisplay] = useState(false);
+  // useEffect(() => {
+  //   const id = searchParams.get("id");
+  //   if (id === key) {
+  //     setIsDisplay(true);
+  //   } else {
+  //     // router.push("/..");
+  //   }
+  // }, [searchParams, router]);
+  // console.log(searchParams.get("id"));
   useEffect(() => {
+    // ここで認証を行う
+
     audioRef1.current = new Audio("/secret/audio/meow.mp3");
     audioRef2.current = new Audio("/secret/audio/dosu.mp3");
     audioRef3.current = new Audio("/secret/audio/burudo-za-.mp3");
     audioRef4.current = new Audio("/secret/audio/baikinman.mp3");
+    audioRef5.current = new Audio("/secret/audio/wii.mp3");
   }, []);
 
   const playSound = (audioRef: React.RefObject<HTMLAudioElement>) => {
@@ -30,6 +48,7 @@ const AudioPlayerPage: React.FC = () => {
     audioRef2.current?.play();
     audioRef3.current?.play();
     audioRef4.current?.play();
+    audioRef5.current?.play();
   };
 
   const pauseSound = (audioRef: React.RefObject<HTMLAudioElement>) => {
@@ -40,9 +59,11 @@ const AudioPlayerPage: React.FC = () => {
     audioRef2.current?.pause();
     audioRef3.current?.pause();
     audioRef4.current?.pause();
+    audioRef5.current?.pause();
   };
 
   return (
+    // isDisplay && (
     <>
       <header className="bg-gray-800 text-white">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -65,6 +86,9 @@ const AudioPlayerPage: React.FC = () => {
           <div className="flex justify-center space-x-4 sm:w-1/2">
             <Button variant="secondary" onClick={() => playSound(audioRef1)}>
               にゃーお
+            </Button>
+            <Button variant="secondary" onClick={() => playSound(audioRef5)}>
+              うぃー
             </Button>
             <Button variant="secondary" onClick={() => playSound(audioRef2)}>
               どすっ
@@ -100,6 +124,7 @@ const AudioPlayerPage: React.FC = () => {
       </footer>
     </>
   );
+  // );
 };
 
 export default AudioPlayerPage;
