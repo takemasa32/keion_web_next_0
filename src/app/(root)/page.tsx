@@ -33,11 +33,11 @@ const Home = () => {
 
               <div
                 onClick={() => {
-                  // if (secretPass === keyNum && secretPass2 === keyNum) {
-                  sessionStorage.setItem("accessAllowed", "true");
-                  sessionStorage.setItem("setTime", new Date().getTime().toString());
-                  router.push("/secret");
-                  // }
+                  if (secretPass === keyNum && secretPass2 === keyNum) {
+                    sessionStorage.setItem("accessAllowed", "true");
+                    sessionStorage.setItem("setTime", new Date().getTime().toString());
+                    router.push("/secret");
+                  }
                 }}
                 className={secretPass2 === keyNum ? " animate-bounce" : ""}
               >
