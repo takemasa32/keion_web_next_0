@@ -42,7 +42,7 @@ const PopupModal = ({
     if (currentDate >= startDate && currentDate <= endDate) {
       setShouldShow(true);
     } else {
-      setShouldShow(false);
+      setShouldShow(true);
     }
 
     // デバイスの種類を判別
