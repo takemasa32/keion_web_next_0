@@ -54,13 +54,8 @@ const PopupModal = ({
       isOpen={isOpen && shouldShow}
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
-      className={`fixed inset-0 flex items-center justify-center z-50 ${
-        isPC ? "transition-transform duration-300" : ""
-      }`}
-      overlayClassName={`fixed inset-0 bg-black bg-opacity-50 ${
-        isPC ? "transition-opacity duration-300" : ""
-      }`}
-      closeTimeoutMS={isPC ? 300 : 0}
+      className={`fixed inset-0 flex items-center justify-center z-50 `}
+      overlayClassName={`fixed inset-0 bg-black bg-opacity-50 `}
     >
       <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-6 rounded-lg shadow-lg max-w-md mx-auto">
         {children}
