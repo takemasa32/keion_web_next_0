@@ -27,6 +27,7 @@ const PopupModal = ({
   endDate: Date;
 }) => {
   const [shouldShow, setShouldShow] = useState(false);
+  const [isPC, setIsPC] = useState(false);
 
   useEffect(() => {
     const currentDate = new Date();
@@ -35,6 +36,17 @@ const PopupModal = ({
     } else {
       setShouldShow(false);
     }
+
+    // デバイスの種類を判別
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    setIsPC(mediaQuery.matches);
+
+    const handleResize = () => {
+      setIsPC(mediaQuery.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
   }, [startDate, endDate]);
 
   return (
@@ -42,17 +54,13 @@ const PopupModal = ({
       isOpen={isOpen && shouldShow}
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
-      className={{
-        base: "fixed inset-0 flex items-center justify-center z-50 transition-transform duration-300",
-        afterOpen: "scale-100",
-        beforeClose: "scale-95",
-      }}
-      overlayClassName={{
-        base: "fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300",
-        afterOpen: "opacity-100",
-        beforeClose: "opacity-0",
-      }}
-      closeTimeoutMS={300}
+      className={`fixed inset-0 flex items-center justify-center z-50 ${
+        isPC ? "transition-transform duration-300" : ""
+      }`}
+      overlayClassName={`fixed inset-0 bg-black bg-opacity-50 ${
+        isPC ? "transition-opacity duration-300" : ""
+      }`}
+      closeTimeoutMS={isPC ? 300 : 0}
     >
       <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-6 rounded-lg shadow-lg max-w-md mx-auto">
         {children}
