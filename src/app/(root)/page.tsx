@@ -42,7 +42,7 @@ const PopupModal = ({
     if (currentDate >= startDate && currentDate <= endDate) {
       setShouldShow(true);
     } else {
-      setShouldShow(true);
+      setShouldShow(false);
     }
 
     // デバイスの種類を判別
@@ -260,8 +260,8 @@ const Home = () => {
         onRequestClose={closeModal}
         onConfirm={navigateToEventPage}
         contentLabel="大学祭のお知らせ"
-        startDate={new Date("2024-10-1")}
-        endDate={new Date("2024-10-15")}
+        startDate={new Date(Date.UTC(2024, 9, 1))} // 2024年10月1日 UTC
+        endDate={new Date(Date.UTC(2024, 9, 15))} // 2024年10月15日 UTC
       >
         <div className="flex justify-center mb-4">
           <svg
