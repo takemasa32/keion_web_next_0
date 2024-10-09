@@ -31,6 +31,7 @@ const RootLayout = ({ children }: { children: ReactNode }) => {
       </head>
       <body>
         <div
+          id="__next"
           className="flex flex-col min-h-screen bg-white"
           style={{
             paddingTop: "env(safe-area-inset-top)",

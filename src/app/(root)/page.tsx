@@ -30,6 +30,14 @@ const PopupModal = ({
   const [isPC, setIsPC] = useState(false);
 
   useEffect(() => {
+    const appElement = document.getElementById("__next");
+    if (appElement) {
+      Modal.setAppElement(appElement);
+    } else {
+      console.error("App element not found");
+    }
+  }, []);
+  useEffect(() => {
     const currentDate = new Date();
     if (currentDate >= startDate && currentDate <= endDate) {
       setShouldShow(true);
@@ -54,8 +62,11 @@ const PopupModal = ({
       isOpen={isOpen && shouldShow}
       onRequestClose={onRequestClose}
       contentLabel={contentLabel}
-      className={`fixed inset-0 flex items-center justify-center z-50 `}
-      overlayClassName={`fixed inset-0 bg-black bg-opacity-50 `}
+      className={`fixed inset-0 flex items-center justify-center z-50 transition-transform duration-300"
+      }`}
+      overlayClassName={`fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300"
+      }`}
+      closeTimeoutMS={300}
     >
       <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-6 rounded-lg shadow-lg max-w-md mx-auto">
         {children}
@@ -247,8 +258,8 @@ const Home = () => {
         onRequestClose={closeModal}
         onConfirm={navigateToEventPage}
         contentLabel="大学祭のお知らせ"
-        startDate={new Date("2024-10-1")}
-        endDate={new Date("2024-10-15")}
+        startDate={new Date(Date.UTC(2024, 9, 1))} // 2024年10月1日 UTC
+        endDate={new Date(Date.UTC(2024, 9, 15))} // 2024年10月15日 UTC
       >
         <div className="flex justify-center mb-4">
           <svg
