@@ -81,7 +81,7 @@ const EventsPage = () => {
           <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
             <div className="w-full lg:w-1/2 lg:pr-4 mb-4 lg:mb-0">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12994.669619825514!2d133.0632445285708!3d35.48777202691312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f1.1!3m3!1m2!1s0x35570447d6b9c935%3A0x38f76f85ddd0e6df!2z44CSNjkwLTA4MjMg5bO25qC555yM5p2-5rGf5biC6KW_5bed5rSl55S677yR77yQ77yW77yQ!5e0!3m2!1sja!2sjp!4v1728468268067!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12994.669619825514!2d133.0632445285708!3d35.48777202691312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f1.1!3m3!1m2!1s0x35570447d6b9c935%3A0x38f76f85ddd0e6df!2z44CSNjkwLTA4MjMg5bO25qC555yM5p2-5rGf5biC6KW_5bed5rSl55S677yR77yQ77yW77yQ!5e0!3m2!1sja!2sjp"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
@@ -178,43 +178,71 @@ const EventsPage = () => {
           </p>
         </div>
 
-        {/* イベント情報 */}
+        {/* SNSセクション */}
         <div className="mt-8 sm:mt-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
-          <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-6 sm:mb-8 break-words">
-            イベント情報
-          </h1>
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event, index) => (
-              <Link href={event.link || "#"} key={index}>
-                <div
-                  className={`relative bg-gray-100 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105 ${
-                    event.link ? "hover:bg-gray-200" : ""
-                  }`}
-                >
-                  <Image
-                    src={event.image || "/image/keionMiniLogo.JPG"}
-                    alt={event.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                    onError={handleImageError}
-                  />
-                  <div className="p-4 sm:p-6">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 break-words">
-                      {event.title}
-                    </h2>
-                    <p className="text-gray-600 mb-2 sm:mb-4 break-words">{event.date}</p>
-                    <p className="text-gray-700 break-words">{event.description}</p>
-                  </div>
-                  {event.link && (
-                    <div className="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md">
-                      <FaExternalLinkAlt className="text-gray-800" />
-                    </div>
-                  )}
-                </div>
-              </Link>
-            ))}
+          <div className="mb-8 text-center">
+            <p className="text-lg text-gray-500">詳細な情報については以下のSNSから？</p>
           </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <a
+              href="https://twitter.com/shimaneU_keion"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center p-6 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+            >
+              <i className="fab fa-twitter fa-3x"></i>
+              <span className="ml-4 text-xl font-semibold">Twitter</span>
+            </a>
+            <a
+              href="https://www.instagram.com/shimadai_keion/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center p-6 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-pink-600 transition duration-300"
+            >
+              <i className="fab fa-instagram fa-3x"></i>
+              <span className="ml-4 text-xl font-semibold">Instagram</span>
+            </a>
+          </div>
+          <p className="mt-8 text-center text-gray-500">↑各アイコンをクリックで、SNSに飛べます。</p>
+        </div>
+      </div>
+
+      {/* イベント情報 */}
+      <div className="mt-8 sm:mt-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-6 sm:mb-8 break-words">
+          イベント情報 一覧
+        </h1>
+        <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {events.map((event, index) => (
+            <Link href={event.link || "#"} key={index}>
+              <div
+                className={`relative bg-gray-100 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105 ${
+                  event.link ? "hover:bg-gray-200" : ""
+                }`}
+              >
+                <Image
+                  src={event.image || "/image/keionMiniLogo.JPG"}
+                  alt={event.title}
+                  width={500}
+                  height={300}
+                  className="w-full h-48 object-cover"
+                  onError={handleImageError}
+                />
+                <div className="p-4 sm:p-6">
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 break-words">
+                    {event.title}
+                  </h2>
+                  <p className="text-gray-600 mb-2 sm:mb-4 break-words">{event.date}</p>
+                  <p className="text-gray-700 break-words">{event.description}</p>
+                </div>
+                {event.link && (
+                  <div className="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md">
+                    <FaExternalLinkAlt className="text-gray-800" />
+                  </div>
+                )}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 
