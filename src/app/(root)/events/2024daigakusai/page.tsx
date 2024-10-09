@@ -49,7 +49,7 @@ const EventsPage = () => {
           <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
             <div className="w-full lg:w-1/2 lg:pr-4 mb-4 lg:mb-0">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12994.669619825514!2d133.0632445285708!3d35.48777202691312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35570447d6b9c935%3A0x38f76f85ddd0e6df!2z44CSNjkwLTA4MjMg5bO25qC555yM5p2-5rGf5biC6KW_5bed5rSl55S677yR77yQ77yW77yQ!5e0!3m2!1sja!2sjp!4v1728468198267!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12994.751923987727!2d133.05788793922838!3d35.487263036081586!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f1.1!3m3!1m2!1s0x355704462bb567af%3A0xc7bb1d281bcd3529!2z44CSNjkwLTA4MjMg5bO25qC555yM5p2-5rGf5biC6KW_5bed5rSl55S6!5e0!3m2!1sja!2sjp!4v1728492748809!5m2!1sja!2sjp"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
@@ -81,7 +81,7 @@ const EventsPage = () => {
           <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
             <div className="w-full lg:w-1/2 lg:pr-4 mb-4 lg:mb-0">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12994.669619825514!2d133.0632445285708!3d35.48777202691312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x35570447d6b9c935%3A0x38f76f85ddd0e6df!2z44CSNjkwLTA4MjMg5bO25qC555yM5p2-5rGf5biC6KW_5bed5rSl55S677yR77yQ77yW77yQ!5e0!3m2!1sja!2sjp!4v1728468268067!5m2!1sja!2sjp"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12994.669619825514!2d133.0632445285708!3d35.48777202691312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f1.1!3m3!1m2!1s0x35570447d6b9c935%3A0x38f76f85ddd0e6df!2z44CSNjkwLTA4MjMg5bO25qC555yM5p2-5rGf5biC6KW_5bed5rSl55S677yR77yQ77yW77yQ!5e0!3m2!1sja!2sjp!4v1728468268067!5m2!1sja!2sjp"
                 width="100%"
                 height="300"
                 style={{ border: 0 }}
