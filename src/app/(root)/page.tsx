@@ -1,18 +1,109 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SNSButton from "./components/SNSButton";
 import FAQItem from "./components/FAQItems";
 import TopLoading from "./components/TopLoading";
 import ScrollReveal from "./components/ScrollReveal";
 import InfoBlock from "./components/InfoBlock";
 import { useRouter } from "next/navigation";
+import Modal from "react-modal";
+
+// ポップアップモーダルコンポーネント
+const PopupModal = ({
+  isOpen,
+  onRequestClose,
+  onConfirm,
+  contentLabel,
+  children,
+  startDate,
+  endDate,
+}: {
+  isOpen: boolean;
+  onRequestClose: () => void;
+  onConfirm: () => void;
+  contentLabel: string;
+  children: React.ReactNode;
+  startDate: Date;
+  endDate: Date;
+}) => {
+  const [shouldShow, setShouldShow] = useState(false);
+
+  useEffect(() => {
+    const currentDate = new Date();
+    if (currentDate >= startDate && currentDate <= endDate) {
+      setShouldShow(true);
+    } else {
+      setShouldShow(false);
+    }
+  }, [startDate, endDate]);
+
+  return (
+    <Modal
+      isOpen={isOpen && shouldShow}
+      onRequestClose={onRequestClose}
+      contentLabel={contentLabel}
+      className={{
+        base: "fixed inset-0 flex items-center justify-center z-50 transition-transform duration-300",
+        afterOpen: "scale-100",
+        beforeClose: "scale-95",
+      }}
+      overlayClassName={{
+        base: "fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300",
+        afterOpen: "opacity-100",
+        beforeClose: "opacity-0",
+      }}
+      closeTimeoutMS={300}
+    >
+      <div className="bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-6 rounded-lg shadow-lg max-w-md mx-auto">
+        {children}
+        <div className="flex justify-end space-x-4">
+          <button
+            onClick={onRequestClose}
+            className="px-4 py-2 bg-blue-300 text-white rounded hover:bg-blue-400 transition-colors duration-200"
+          >
+            キャンセル
+          </button>
+          <button
+            onClick={onConfirm}
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors duration-200"
+          >
+            移動する
+          </button>
+        </div>
+      </div>
+    </Modal>
+  );
+};
 
 const Home = () => {
   const router = useRouter();
-  const [secretPass, setSecretPass] = React.useState(0);
-  const [secretPass2, setSecretPass2] = React.useState(0);
+  const [secretPass, setSecretPass] = useState(0);
+  const [secretPass2, setSecretPass2] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const initialLoadingText = "ようこそ軽音楽部へ";
   const keyNum = 7;
+  const loadingTime = 2000; // ローディング時間を設定
+
+  useEffect(() => {
+    const appElement = document.getElementById("__next");
+    if (appElement) {
+      Modal.setAppElement(appElement);
+    }
+
+    const timer = setTimeout(() => {
+      setIsModalOpen(true);
+    }, loadingTime + 1000);
+
+    return () => clearTimeout(timer); // クリーンアップ
+  }, [loadingTime]);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const navigateToEventPage = () => {
+    router.push("/events/2024daigakusai");
+  };
 
   return (
     <>
@@ -21,7 +112,7 @@ const Home = () => {
           setSecretPass(secretPass + 1);
         }}
       >
-        <TopLoading text={secretPass == keyNum ? "" : initialLoadingText} />
+        <TopLoading time={loadingTime} text={secretPass == keyNum ? "" : initialLoadingText} />
       </div>
       <div className={secretPass == keyNum && secretPass2 < keyNum ? " animate-pulse" : ""}>
         <div className="bg-white py-6 sm:py-8 lg:py-12">
@@ -47,20 +138,6 @@ const Home = () => {
                   楽しみましょう！
                 </h1>
               </div>
-              {/* <div className="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
-                <a
-                  href="/posts"
-                  className="anm_mod left btn btn-secondary inline-block rounded-lg px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
-                >
-                  活動記録を見る
-                </a>
-                <a
-                  href="/sns"
-                  className="anm_mod right btn btn-secondary inline-block rounded-lg px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base"
-                >
-                  SNSを確認する
-                </a>
-              </div> */}
             </div>
           </div>
         </div>
@@ -152,13 +229,47 @@ const Home = () => {
             </div>
           </div>
           <div className="m-5">
-            <h2>次は部室で会いましょう！</h2>
+            <h2 className="text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">
+              次は部室で会いましょう！
+            </h2>
             <ScrollReveal>
               <SNSButton />
             </ScrollReveal>
           </div>
         </div>
       </div>
+      {/* ポップアップモーダル */}
+      <PopupModal
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
+        onConfirm={navigateToEventPage}
+        contentLabel="大学祭のお知らせ"
+        startDate={new Date("2024-10-1")}
+        endDate={new Date("2024-10-15")}
+      >
+        <div className="flex justify-center mb-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-12 w-12 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M13 16h-1v-4h-1m1-4h.01M12 18h.01M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9z"
+            />
+          </svg>
+        </div>
+        <h2 className="text-2xl font-bold mb-4 text-center text-white">大学祭のお知らせ</h2>
+        <p className="mb-4 text-center text-white">
+          今年の大学祭が開催されます！
+          <br />
+          特設ページに移動しますか？
+        </p>
+      </PopupModal>
     </>
   );
 };

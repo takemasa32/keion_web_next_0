@@ -2,38 +2,34 @@ import React from "react";
 
 export default function SNSButton() {
   return (
-    <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
-      <div className="mb-4 items-center md:mb-8 lg:flex-row lg:justify-between">
-        <h2 className="mb-2 text-center text-2xl font-bold text-gray-800 lg:mb-0 lg:text-3xl">
-          SNS
-        </h2>
-        <p className="max-w-md text-center text-gray-400 lg:text-right">
-          質問や入部希望,部室見学などは以下のSNSからお願いします．
+    <div className="mx-auto max-w-screen-lg px-4 md:px-8">
+      <div className="mb-8 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">SNS</h2>
+        <p className="text-lg text-gray-500">
+          質問や入部希望、部室見学などは以下のSNSからお願いします。
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-4 rounded-lg md:grid-cols-2 lg:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <a
           href="https://twitter.com/shimaneU_keion"
           target="_blank"
-          className="hover:no-underline"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center p-6 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
         >
-          <div className="flex h-16 items-center justify-center rounded-lg bg-gray-100 p-4 text-gray-400 sm:h-32">
-            <i className="fab fa-twitter fa-3x"></i>
-          </div>
+          <i className="fab fa-twitter fa-3x"></i>
+          <span className="ml-4 text-xl font-semibold">Twitter</span>
         </a>
         <a
           href="https://www.instagram.com/shimadai_keion/"
           target="_blank"
-          className="hover:no-underline"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center p-6 bg-pink-500 text-white rounded-lg shadow-lg hover:bg-pink-600 transition duration-300"
         >
-          <div className="flex h-16 items-center justify-center rounded-lg bg-gray-100 p-4 text-gray-400 sm:h-32">
-            <i className="fab fa-instagram fa-3x"></i>
-          </div>
+          <i className="fab fa-instagram fa-3x"></i>
+          <span className="ml-4 text-xl font-semibold">Instagram</span>
         </a>
       </div>
-      <p className="mt-2 max-w-md text-center text-gray-400 lg:text-right">
-        ↑各アイコンをクリックで、SNSに飛べます．
-      </p>
+      <p className="mt-8 text-center text-gray-500">↑各アイコンをクリックで、SNSに飛べます。</p>
     </div>
   );
 }
