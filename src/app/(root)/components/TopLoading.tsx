@@ -19,7 +19,7 @@ const TopLoading: React.FC<TopLoadingProps> = ({ text, time }) => {
     ); // 2秒後にローディングを非表示にする
 
     return () => clearTimeout(timer); // コンポーネントのアンマウント時にタイマーをクリアする
-  }, []);
+  }, [time]);
 
   const words = text.split("");
 
