@@ -279,7 +279,7 @@ const Home = () => {
         </div>
         <h2 className="text-2xl font-bold mb-4 text-center text-white">大学祭のお知らせ</h2>
         <p className="mb-4 text-center text-white">
-          今年の大学祭が開催されます！
+          今年も大学祭が開催されます！
           <br />
           特設ページに移動しますか？
         </p>
