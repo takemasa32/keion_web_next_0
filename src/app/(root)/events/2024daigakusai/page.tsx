@@ -72,10 +72,10 @@ const EventsPage = () => {
             屋台とグッズ販売
           </h2>
           <ul className="text-base sm:text-lg text-gray-700 mb-4 list-disc list-inside break-words">
-            <li>日時：10月13日（日）9:00～18:00、10月14日（月）9:00～16:30</li>
+            <li>日時：10月13日/14日 9:00～15:00</li>
             <li>場所：メインストリート ブース36</li>
             <li>
-              内容：軽音部特製のラバーバンドやマフラータオルといったオリジナルグッズの販売、ドリンクの販売
+              内容：軽音部特製のラバーバンドなどオリジナルグッズの販売、ドリンクの販売
             </li>
           </ul>
           <div className="flex flex-col lg:flex-row items-center lg:items-start lg:justify-between">
