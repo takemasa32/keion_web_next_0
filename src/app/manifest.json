@@ -1,0 +1,13 @@
+{
+  "name": "島根大学 軽音楽部",
+  "short_name": "島大軽音",
+  "description": "ようこそ島根大学軽音楽部へ！島根大学軽音楽部のサイトです。イベント情報や活動内容を気分でお届けします。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#4A90E2",
+  "theme_color": "#4A90E2",
+  "icons": [
+    { "src": "/icons/icon-192x192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icons/icon-512x512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
