@@ -1,12 +1,9 @@
-"use client";
 import React from "react";
 import Image from "next/image";
+import CustomImage from "../Components/CustomImage";
+import EventList from "../Components/EventList";
 
 const BukatuTPage = () => {
-  const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    event.currentTarget.src = "/image/keionMiniLogo.JPG"; // デフォルトのロゴ画像のパス
-  };
-
   return (
     <div className="relative bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen py-6 sm:py-8 lg:py-12">
       <div className="container relative z-10 mx-auto px-4">
@@ -34,26 +31,24 @@ const BukatuTPage = () => {
           </h2>
           <div className="flex justify-center space-x-8">
             <div className="flex flex-col items-center">
-              <Image
+              <CustomImage
                 src="/image/keionBackImage.JPG"
                 alt="今年のTシャツ背面デザイン"
                 width={400}
                 height={400}
                 className="rounded-lg shadow-lg object-cover"
-                onError={handleImageError}
               />
               <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
                 背面デザイン
               </p>
             </div>
             <div className="flex flex-col items-center">
-              <Image
+              <CustomImage
                 src="/image/keionMiniLogo.JPG"
                 alt="今年のTシャツワンポイントデザイン"
                 width={400}
                 height={400}
                 className="rounded-lg shadow-lg object-cover"
-                onError={handleImageError}
               />
               <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
                 ワンポイントデザイン
@@ -64,6 +59,8 @@ const BukatuTPage = () => {
             今年のTシャツは、このようなデザインとなっています。部員がデザインしました！
           </p>
         </div>
+        {/* イベント情報 */}
+        <EventList />
       </div>
 
       {/* 背景の装飾 */}
