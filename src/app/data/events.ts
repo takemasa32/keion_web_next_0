@@ -21,6 +21,13 @@ export const events: Event[] = [
     link: "/events/2024BukatuT",
   },
   {
+    title: "2023年 部T",
+    date: "2023年10月",
+    description: "島根大学軽音部2023年度の部Tが完成しました！。詳細はこちらから",
+    image: "/image/2023T/2023TシャツMain.jpg",
+    link: "/events/2023BukatuT",
+  },
+  {
     title: "2024年度 定期演奏会",
     date: "2024年12月21日",
     description:
