@@ -58,6 +58,18 @@ const EventsPage = () => {
               <p className="text-base sm:text-lg text-gray-700 mb-4 break-words">
                 OS争奪ライブを勝ち抜いた9組のバンドが演奏します！あなたの好きなバンドも見つかるかもしれません！是非ご観覧よろしくお願いします。
               </p>
+              <p className="text-base sm:text-lg text-gray-700 mb-4 break-words">
+                詳細は
+                <a
+                  href="https://x.com/shimaneU_keion/status/1845045952287236229"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 underline ml-1"
+                >
+                  こちらのツイート
+                </a>
+                をご覧ください。
+              </p>
             </div>
           </div>
         </div>
