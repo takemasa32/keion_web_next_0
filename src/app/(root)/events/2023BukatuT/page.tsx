@@ -1,12 +1,8 @@
-"use client";
 import React from "react";
 import Image from "next/image";
+import EventList from "../Components/EventList";
 
 const BukatuTPage = () => {
-  const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    event.currentTarget.src = "/image/keionMiniLogo.JPG"; // デフォルトのロゴ画像のパス
-  };
-
   return (
     <div className="relative bg-gradient-to-r from-teal-400 via-cyan-500 to-green-500 min-h-screen py-6 sm:py-8 lg:py-12">
       <div className="container relative z-10 mx-auto px-4">
@@ -40,7 +36,6 @@ const BukatuTPage = () => {
                 width={400}
                 height={400}
                 className="rounded-lg shadow-lg object-cover"
-                onError={handleImageError}
               />
               <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
                 背面デザイン
@@ -53,7 +48,6 @@ const BukatuTPage = () => {
                 width={400}
                 height={400}
                 className="rounded-lg shadow-lg object-cover"
-                onError={handleImageError}
               />
               <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
                 ワンポイントデザイン
@@ -64,32 +58,33 @@ const BukatuTPage = () => {
             2023年のTシャツは、このようなデザインとなっています。部員がデザインしました！
           </p>
         </div>
-      </div>
-      {/* タオルデザイン */}
-      <div className="mt-8 sm:mt-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
-        <h2 className="text-2xl sm:text-2xl font-bold text-center text-black mb-6 sm:mb-8 break-words">
-          2023年のタオルです！
-        </h2>
-        <div className="flex justify-center space-x-8">
-          <div className="flex flex-col items-center">
-            <Image
-              src="/image/2023T/2023タオル.jpg"
-              alt="2023年のタオルデザイン"
-              width={400}
-              height={400}
-              className="rounded-lg shadow-lg object-cover"
-              onError={handleImageError}
-            />
-            <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
-              背面デザイン
-            </p>
-          </div>
-        </div>
-        <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
-          2023年のタオルは、このようなデザインとなっています。部員がデザインしました！
-        </p>
-      </div>
 
+        {/* タオルデザイン */}
+        <div className="mt-8 sm:mt-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
+          <h2 className="text-2xl sm:text-2xl font-bold text-center text-black mb-6 sm:mb-8 break-words">
+            2023年のタオルです！
+          </h2>
+          <div className="flex justify-center space-x-8">
+            <div className="flex flex-col items-center">
+              <Image
+                src="/image/2023T/2023タオル.jpg"
+                alt="2023年のタオルデザイン"
+                width={400}
+                height={400}
+                className="rounded-lg shadow-lg object-cover"
+              />
+              <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
+                背面デザイン
+              </p>
+            </div>
+          </div>
+          <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
+            2023年のタオルは、このようなデザインとなっています。部員がデザインしました！
+          </p>
+        </div>
+        {/* イベント情報 */}
+        <EventList />
+      </div>
       {/* 背景の装飾 */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
         <svg

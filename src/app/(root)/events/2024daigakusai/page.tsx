@@ -1,14 +1,52 @@
-"use client";
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
 import { events } from "../../../data/events"; // イベントデータをインポート
+import CustomImage from "../Components/CustomImage";
+import EventList from "../Components/EventList";
 
+const bandSchedule = [
+  { date: "2024-10-13", name: "珍満boys", start: "13:10", end: "13:25" },
+  { date: "2024-10-13", name: "ムラムラオカズ", start: "13:30", end: "13:45" },
+  { date: "2024-10-13", name: "きゃのん公園", start: "13:50", end: "14:05" },
+  { date: "2024-10-13", name: "0 痔 SAN KAN-CHI GRADUAT", start: "14:10", end: "14:25" },
+  { date: "2024-10-13", name: "maaiskin", start: "14:30", end: "14:45" },
+  { date: "2024-10-13", name: "apricot", start: "14:50", end: "15:05" },
+  { date: "2024-10-13", name: "凛として林業", start: "15:10", end: "15:25" },
+  { date: "2024-10-13", name: "クロレキシ団", start: "15:30", end: "15:45" },
+  { date: "2024-10-13", name: "本当に変", start: "15:50", end: "16:05" },
+];
+
+const getCurrentAndNextBand = () => {
+  const now = new Date();
+  const jstNow = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
+  const currentDate = jstNow.toISOString().split("T")[0];
+  const currentTime = `${jstNow.getHours()}:${
+    jstNow.getMinutes() < 10 ? "0" : ""
+  }${jstNow.getMinutes()}`;
+
+  let currentBand = null;
+  let nextBand = null;
+
+  for (let i = 0; i < bandSchedule.length; i++) {
+    const band = bandSchedule[i];
+    if (band.date === currentDate && currentTime >= band.start && currentTime <= band.end) {
+      currentBand = band;
+      nextBand =
+        bandSchedule[i + 1] && bandSchedule[i + 1].date === currentDate
+          ? bandSchedule[i + 1]
+          : null;
+      break;
+    }
+  }
+
+  return { currentBand, nextBand, currentTime, currentDate };
+};
 const EventsPage = () => {
-  const handleImageError = (event: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    event.currentTarget.src = "/image/keionMiniLogo.JPG"; // デフォルトのロゴ画像のパス
-  };
+  const { currentBand, nextBand, currentTime, currentDate } = getCurrentAndNextBand();
+
+  const eventStartTime = "13:10";
+  const eventEndTime = "16:05";
+  const eventDate = "2024-10-13";
 
   return (
     <div className="relative bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen py-6 sm:py-8 lg:py-12">
@@ -59,9 +97,32 @@ const EventsPage = () => {
               ></iframe>
             </div>
             <div className="w-full lg:w-1/2 lg:pl-4">
-              <p className="text-base sm:text-lg text-gray-700 mb-4 break-words">
-                OS争奪ライブを勝ち抜いた9組のバンドが演奏します！あなたの好きなバンドも見つかるかもしれません！是非ご観覧よろしくお願いします。
-              </p>
+              {currentDate !== eventDate && (
+                <p className="text-lg text-gray-700 mb-4 break-words">
+                  イベントは {eventDate} に開催されます。お楽しみに！
+                </p>
+              )}
+              {currentDate === eventDate && currentTime < eventStartTime && (
+                <p className="text-lg text-gray-700 mb-4 break-words">
+                  演奏は {eventStartTime} に開始します。お楽しみに！
+                </p>
+              )}
+              {currentDate === eventDate && currentBand && (
+                <div className="mt-4">
+                  <p className="text-lg text-gray-700">
+                    現在演奏中のバンド: <strong>{currentBand.name}</strong> ({currentBand.start} -{" "}
+                    {currentBand.end})
+                  </p>
+                </div>
+              )}
+              {currentDate === eventDate && nextBand && (
+                <div className="mt-2">
+                  <p className="text-lg text-gray-700">
+                    次に演奏するバンド: <strong>{nextBand.name}</strong> ({nextBand.start} -{" "}
+                    {nextBand.end})
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -146,26 +207,24 @@ const EventsPage = () => {
           <Link href="/events/2024BukatuT">
             <div className="flex justify-center space-x-8 cursor-pointer">
               <div className="flex flex-col items-center">
-                <Image
+                <CustomImage
                   src="/image/keionBackImage.JPG"
                   alt="今年のTシャツ背面デザイン"
                   width={400}
                   height={400}
                   className="rounded-lg shadow-lg object-cover"
-                  onError={handleImageError}
                 />
                 <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
                   背面デザイン
                 </p>
               </div>
               <div className="flex flex-col items-center">
-                <Image
+                <CustomImage
                   src="/image/keionMiniLogo.JPG"
                   alt="今年のTシャツワンポイントデザイン"
                   width={400}
                   height={400}
                   className="rounded-lg shadow-lg object-cover"
-                  onError={handleImageError}
                 />
                 <p className="text-base sm:text-lg text-center text-gray-700 mt-4 break-words">
                   ワンポイントデザイン
@@ -207,43 +266,7 @@ const EventsPage = () => {
         </div>
 
         {/* イベント情報 */}
-        <div className="mt-8 sm:mt-12 bg-white bg-opacity-80 p-6 rounded-lg shadow-lg">
-          <h1 className="text-2xl sm:text-3xl font-bold text-center text-black mb-6 sm:mb-8 break-words">
-            イベント情報 一覧
-          </h1>
-          <div className="grid gap-6 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {events.map((event, index) => (
-              <Link href={event.link || "#"} key={index}>
-                <div
-                  className={`relative bg-gray-100 rounded-lg shadow-lg overflow-hidden cursor-pointer transition-transform transform hover:scale-105 ${
-                    event.link ? "hover:bg-gray-200" : ""
-                  }`}
-                >
-                  <Image
-                    src={event.image || "/image/keionMiniLogo.JPG"}
-                    alt={event.title}
-                    width={500}
-                    height={300}
-                    className="w-full h-48 object-cover"
-                    onError={handleImageError}
-                  />
-                  <div className="p-4 sm:p-6">
-                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 break-words">
-                      {event.title}
-                    </h2>
-                    <p className="text-gray-600 mb-2 sm:mb-4 break-words">{event.date}</p>
-                    <p className="text-gray-700 break-words">{event.description}</p>
-                  </div>
-                  {event.link && (
-                    <div className="absolute top-2 right-2 bg-white p-1 rounded-full shadow-md">
-                      <FaExternalLinkAlt className="text-gray-800" />
-                    </div>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
+        <EventList events={events} />
       </div>
 
       {/* 背景の装飾 */}
