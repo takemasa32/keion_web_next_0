@@ -1,11 +1,53 @@
 import React from "react";
 import Link from "next/link";
-import { FaExternalLinkAlt } from "react-icons/fa";
 import { events } from "../../../data/events"; // イベントデータをインポート
 import CustomImage from "../Components/CustomImage";
 import EventList from "../Components/EventList";
 
+const bandSchedule = [
+  { date: "2024-10-13", name: "珍満boys", start: "13:10", end: "13:25" },
+  { date: "2024-10-13", name: "ムラムラオカズ", start: "13:30", end: "13:45" },
+  { date: "2024-10-13", name: "きゃのん公園", start: "13:50", end: "14:05" },
+  { date: "2024-10-13", name: "0 痔 SAN KAN-CHI GRADUAT", start: "14:10", end: "14:25" },
+  { date: "2024-10-13", name: "maaiskin", start: "14:30", end: "14:45" },
+  { date: "2024-10-13", name: "apricot", start: "14:50", end: "15:05" },
+  { date: "2024-10-13", name: "凛として林業", start: "15:10", end: "15:25" },
+  { date: "2024-10-13", name: "クロレキシ団", start: "15:30", end: "15:45" },
+  { date: "2024-10-13", name: "本当に変", start: "15:50", end: "16:05" },
+];
+
+const getCurrentAndNextBand = () => {
+  const now = new Date();
+  const jstNow = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
+  const currentDate = jstNow.toISOString().split("T")[0];
+  const currentTime = `${jstNow.getHours()}:${
+    jstNow.getMinutes() < 10 ? "0" : ""
+  }${jstNow.getMinutes()}`;
+
+  let currentBand = null;
+  let nextBand = null;
+
+  for (let i = 0; i < bandSchedule.length; i++) {
+    const band = bandSchedule[i];
+    if (band.date === currentDate && currentTime >= band.start && currentTime <= band.end) {
+      currentBand = band;
+      nextBand =
+        bandSchedule[i + 1] && bandSchedule[i + 1].date === currentDate
+          ? bandSchedule[i + 1]
+          : null;
+      break;
+    }
+  }
+
+  return { currentBand, nextBand, currentTime, currentDate };
+};
 const EventsPage = () => {
+  const { currentBand, nextBand, currentTime, currentDate } = getCurrentAndNextBand();
+
+  const eventStartTime = "13:10";
+  const eventEndTime = "16:05";
+  const eventDate = "2024-10-13";
+
   return (
     <div className="relative bg-gradient-to-r from-pink-300 via-purple-300 to-indigo-400 min-h-screen py-6 sm:py-8 lg:py-12">
       <div className="container relative z-10 mx-auto px-4">
@@ -55,21 +97,32 @@ const EventsPage = () => {
               ></iframe>
             </div>
             <div className="w-full lg:w-1/2 lg:pl-4">
-              <p className="text-base sm:text-lg text-gray-700 mb-4 break-words">
-                OS争奪ライブを勝ち抜いた9組のバンドが演奏します！あなたの好きなバンドも見つかるかもしれません！是非ご観覧よろしくお願いします。
-              </p>
-              <p className="text-base sm:text-lg text-gray-700 mb-4 break-words">
-                詳細は
-                <a
-                  href="https://x.com/shimaneU_keion/status/1845045952287236229"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 underline ml-1"
-                >
-                  こちらのツイート
-                </a>
-                をご覧ください。
-              </p>
+              {currentDate !== eventDate && (
+                <p className="text-lg text-gray-700 mb-4 break-words">
+                  イベントは {eventDate} に開催されます。お楽しみに！
+                </p>
+              )}
+              {currentDate === eventDate && currentTime < eventStartTime && (
+                <p className="text-lg text-gray-700 mb-4 break-words">
+                  演奏は {eventStartTime} に開始します。お楽しみに！
+                </p>
+              )}
+              {currentDate === eventDate && currentBand && (
+                <div className="mt-4">
+                  <p className="text-lg text-gray-700">
+                    現在演奏中のバンド: <strong>{currentBand.name}</strong> ({currentBand.start} -{" "}
+                    {currentBand.end})
+                  </p>
+                </div>
+              )}
+              {currentDate === eventDate && nextBand && (
+                <div className="mt-2">
+                  <p className="text-lg text-gray-700">
+                    次に演奏するバンド: <strong>{nextBand.name}</strong> ({nextBand.start} -{" "}
+                    {nextBand.end})
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         </div>
