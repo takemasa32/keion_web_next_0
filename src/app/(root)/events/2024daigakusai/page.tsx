@@ -78,7 +78,7 @@ const EventsPage = () => {
             ライブパフォーマンス
           </h2>
           <ul className="text-base sm:text-lg text-gray-700 mb-4 list-disc list-inside break-words">
-            <li>日時：10月13日（日）13:40～16:10</li>
+            <li>日時：10月13日（日）13:10～16:05</li>
             <li>場所：屋外メインステージ</li>
             <li>
               内容：あなたの好きなバンドも見つかるかもしれません！是非ご観覧よろしくお願いします。
