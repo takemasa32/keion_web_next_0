@@ -7,7 +7,7 @@ import EventList from "../Components/EventList";
 
 const bandSchedule = [
   { date: "2024-10-13", name: "珍満boys", start: "13:10", end: "13:25" },
-  { date: "2024-10-13", name: "ムラムラオカズ", start: "13:30", end: "13:45" },
+  { date: "2024-10-13", name: "ムラムラオカズ", start: "13:30", end: "13:50" },
   { date: "2024-10-13", name: "きゃのん公園", start: "13:50", end: "14:05" },
   { date: "2024-10-13", name: "0 痔 SAN KAN-CHI GRADUAT", start: "14:10", end: "14:25" },
   { date: "2024-10-13", name: "maaiskin", start: "14:30", end: "14:45" },
