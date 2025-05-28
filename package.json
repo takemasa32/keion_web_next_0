@@ -13,7 +13,7 @@
     "@remixicon/react": "^4.2.0",
     "@tremor/react": "^3.17.2",
     "@vercel/speed-insights": "^1.0.11",
-    "axios": "^1.7.7",
+    "axios": "^1.8.2",
     "cheerio": "^1.0.0",
     "framer-motion": "^11.2.10",
     "next": "^14.2.23",
